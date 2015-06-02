@@ -43,9 +43,7 @@ if ($miniNavbar) {
 <body class="skin-3<?php if($miniNavbar):?> mini-navbar<?php endif;?>">
     <div id="wrapper">
 
-        <?php if (!Yii::app()->user->isGuest):?>
             <?php $this->renderPartial('//layouts/_mainMenu');?>
-        <?php endif;?>
         <div id="page-wrapper" class="gray-bg">
             <?php $this->renderPartial('//layouts/_topMenu');?>
 

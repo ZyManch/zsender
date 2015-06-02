@@ -14,31 +14,18 @@ return array(
     'localeClass' => 'Locale',
     'import'=>array(
         'application.models.original.*',
-        'application.models.page.*',
         'application.models.search.*',
-        'application.models.graph.common.*',
-        'application.models.graph.*',
-        'application.models.statisticColumn.*',
-        'application.models.messenger.*',
         'application.models.*',
         'application.forms.*',
         'application.components.*',
-        'application.components.DataFilter.*',
-        'application.components.DataFormatter.*',
-        'application.components.ErrorSaver.*',
         'application.controllers.*',
-        'application.modules.user.*',
-        'application.modules.project.*',
-        'application.modules.widget.*',
-        'application.models.editor.*',
         'application.behaviors.*',
-        'application.widgets.*',
     ),
 
     // application components
     'components'=>array(
         'db'=>array(
-            'connectionString' => 'mysql:host=localhost;dbname=ztrack',
+            'connectionString' => 'mysql:host=localhost;dbname=zsender',
             'emulatePrepare' => true,
             'username' => 'root',
             'password' => '',
@@ -66,6 +53,7 @@ return array(
     'params'=>array(
         'adminEmail'=>'webmaster@example.com',
         'salt' => 'salt',
-
+        'company'=>'My company',
+        'url'=>'http://sender.dev',
     ),
 );

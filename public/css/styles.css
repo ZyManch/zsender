@@ -1,0 +1,152 @@
+.todo-list li.level {
+    border: 0;
+    background-color: transparent;
+    padding: 0;
+    padding-left: 40px;
+}
+.todo-list li.level > ul{
+    margin: 0;
+}
+tr.low td, .label.label-low {
+    background-color: #b6c7ef;
+}
+tr.normal td,.label.label-normal {
+
+}
+tr.high td ,.label.label-high{
+    background-color: #efcd90;
+}
+tr.urgent td, .label.label-urgent {
+    background-color: #ef9179;
+}
+tr.immediately td, .label.label-immediately {
+    background-color: #ef492a;
+    color: #ffffff;
+}
+.project-title small a {
+    font-size: 85%;
+}
+.widget {
+    margin-top: 10px !important;
+}
+.widget .ibox-title:first-child {
+    border-radius: 5px 5px 0px 0px;
+}
+.widget .ibox-content:last-child {
+    border-radius: 0px 0px 5px 5px ;
+}
+
+.swappable-container {
+    min-height: 150px;
+}
+.widget .ibox-content {
+    overflow-x: auto;
+}
+.from-dragged {
+    background-color: #f0f0f0;
+    border: 1px dashed gray;
+}
+.being-dragged {
+    opacity: 0.5;
+    position: relative;
+    z-index: 1000;
+}
+.highlight {
+    position: relative;
+    background-color: transparent;
+}
+.highlight .highlight-active-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 18px;
+    background-color: #ffdeb5;
+}
+.highlight .highlight-lines {
+    width: 49px;
+    float: left;
+    font-size: 13px;
+    line-height: 1.42857143;
+    position: relative;
+    z-index: 1;
+}
+.highlight pre.highlight-code {
+    background-color: transparent;
+    border: 0;
+    padding: 0;
+    margin: 0 0 0 50px;
+    font-size: 13px;
+    line-height: 1.42857143;
+    position: relative;
+    z-index: 1;
+    overflow-x: hidden;
+}
+.non-bordered {
+    border: 0;
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+}
+.btn.btn-module {
+    text-align: left;
+    padding: 20px;
+}
+.btn-200 {
+    width: 200px;
+    text-overflow: ellipsis;
+}
+.btn-300 {
+    width: 200px;
+}
+.btn-primary a,.btn-primary a:visited,.btn-primary a:hover{
+    color: white;
+    text-decoration: underline;
+}
+
+
+.dd-list .note-title {
+    border: 1px solid #e7eaec;
+    background-color: white;
+    padding: 5px 5px 5px 45px;
+
+}
+.dd-list .dragtable-lines,.dd-list .dragtable-lines:hover {
+    position: absolute;
+    left: 15px;
+    top: 6px;
+    border: 3px solid #e7eaec;
+    background-color: #ffffff;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    width:10px;
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+    cursor: move;
+    height: 30px;
+}
+.dd-list .note-title > a {
+    line-height: 30px;
+
+}
+.dd-list hr {
+    margin: 0;
+}
+.checkbox-list td,.checkbox-list th {
+    border-width: 0 !important;
+}
+.checkbox-list .checkbox-item label {
+    width: 100%;
+    cursor: pointer;
+}
+.checkbox-list .checkbox-item input {
+    float: left;
+    margin-right: 5px;
+}
+.checkbox-list .checkbox-item.checked {
+    color: #1ab394;
+
+}
+.form-horizontal .control-label.error {
+    margin-left: 0;
+}

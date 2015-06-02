@@ -10,13 +10,12 @@ class UserIdentity extends CUserIdentity {
     /** @var  User */
     protected $_user;
 
+    const LOGIN = 'admin';
+    const PASS = 'qwe123';
+
 	public function authenticate() {
-        $this->_user = User::model()->findByAttributes(array('email' => $this->username));
-		if (!$this->_user) {
-            $this->errorCode=self::ERROR_USERNAME_INVALID;
-            return false;
-        }
-		if(!$this->_user->checkPassword($this->password)) {
+
+		if($this->username != self::LOGIN || $this->password != self::PASS) {
 			$this->errorCode=self::ERROR_PASSWORD_INVALID;
             return false;
         }
@@ -32,7 +31,7 @@ class UserIdentity extends CUserIdentity {
      */
     public function getId()
     {
-        return $this->_user->id;
+        return self::LOGIN;
     }
 
     /**
@@ -43,6 +42,6 @@ class UserIdentity extends CUserIdentity {
      */
     public function getName()
     {
-        return $this->_user->username;
+        return self::LOGIN;
     }
 }

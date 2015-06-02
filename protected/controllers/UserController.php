@@ -24,145 +24,14 @@ class UserController extends Controller {
                 'users'=>array('*'),
             ),
             array('allow',  // allow all users to perform 'index' and 'view' actions
-                'actions'=>array('logout','index','view'),
+                'actions'=>array('logout',  'view'),
                 'users'=>array('@'),
-            ),
-            array(
-                'allow',
-                'actions' => array(
-                    'addPermission','removePermission','addGroup','removeGroup',
-                    'delete','create','addUserModule','removeUserModule'),
-                'roles' => array(PERMISSION_USER_MANAGE)
             ),
             array('deny',  // deny all users
                 'users'=>array('*'),
             ),
         );
     }
-
-    public function actionCreate() {
-        $model = new User;
-        if (isset($_POST['User'])) {
-            $model->attributes = $_POST['User'];
-            $model->company_id = Yii::app()->user->getUser()->company_id;
-            $model->password = User::EMPTY_PASSWORD;
-            if ($model->save()) {
-                $model->invite();
-                $this->redirect(array('user/view','id'=>$model->id));
-            }
-        }
-        $this->render('create',array(
-            'model'=>$model,
-        ));
-    }
-
-    public function actionIndex() {
-        $dataProvider=new CActiveDataProvider('User');
-        $this->render('index',array(
-            'dataProvider'=>$dataProvider,
-        ));
-    }
-
-    public function actionDelete($id) {
-        $model = $this->loadModel($id);
-        if ($model->id == Yii::app()->user->id) {
-            throw new Exception('Cant delete yourself');
-        }
-        if (Yii::app()->request->isPostRequest) {
-            $model->delete();
-            $this->redirect(array('user/index'));
-        }
-        $this->render('delete',array(
-            'model'=>$model,
-        ));
-    }
-
-    public function actionView($id) {
-        $model = $this->loadModel($id);
-        $permissions = Permission::model()->getTree();
-        $groups = Group::model()->findAll();
-        $modules = SystemModule::getSystemModules('user',array(
-            SystemModule::INSTALLATION_INSTALL,
-            SystemModule::INSTALLATION_NOT_INSTALL
-        ));
-        $this->render('view',array(
-            'model'=>$model,
-            'permissions' => $permissions,
-            'groups' => $groups,
-            'modules' => $modules
-        ));
-    }
-
-    public function actionAddPermission($id) {
-        $user = $this->loadModel($id);
-        $permission = Permission::model()->findByPk(
-            Yii::app()->request->getParam('permission_id')
-        );
-        if (!$permission) {
-            throw new CHttpException(404,'Permission not found');
-        }
-        $user->addPermission($permission);
-    }
-
-    public function actionRemovePermission($id) {
-        $user = $this->loadModel($id);
-        $permission = Permission::model()->findByPk(
-            Yii::app()->request->getParam('permission_id')
-        );
-        if (!$permission) {
-            throw new CHttpException(404,'Permission not found');
-        }
-        $user->removePermission($permission);
-    }
-
-    public function actionAddGroup($id) {
-        $user = $this->loadModel($id);
-        $group = Group::model()->findByAttributes(array(
-            'id' => Yii::app()->request->getParam('group_id'),
-            'company_id' => $user->company_id
-        ));
-        if (!$group) {
-            throw new CHttpException(404,'Group not found');
-        }
-        $user->addGroup($group);
-    }
-
-    public function actionRemoveGroup($id) {
-        $user = $this->loadModel($id);
-        $group = Group::model()->findByAttributes(array(
-            'id' => Yii::app()->request->getParam('group_id'),
-            'company_id' => $user->company_id
-        ));
-        if (!$group) {
-            throw new CHttpException(404,'Group not found');
-        }
-        $user->removeGroup($group);
-    }
-
-    public function actionAddUserModule($id) {
-        $user = $this->loadModel($id);
-        $systemModule = SystemModule::model()->findByAttributes(array(
-            'id' => Yii::app()->request->getParam('system_module_id'),
-            'type' => 'user'
-        ));
-        if (!$systemModule) {
-            throw new CHttpException(404,'System module not found');
-        }
-        $user->addUserModule($systemModule);
-    }
-
-    public function actionRemoveUserModule($id) {
-        $user = $this->loadModel($id);
-        $systemModule = SystemModule::model()->findByAttributes(array(
-            'id' => Yii::app()->request->getParam('system_module_id'),
-            'type' => 'user'
-        ));
-        if (!$systemModule) {
-            throw new CHttpException(404,'System module not found');
-        }
-        $user->removeUserModule($systemModule);
-    }
-
     /**
      * Displays the login page
      */
@@ -194,13 +63,5 @@ class UserController extends Controller {
     public function actionLogout() {
         Yii::app()->user->logout();
         $this->redirect(Yii::app()->homeUrl);
-    }
-
-    public function loadModel($id) {
-        $model=User::model()->findByPk($id);
-        if($model===null) {
-            throw new CHttpException(404,'The requested page does not exist.');
-        }
-        return $model;
     }
 }

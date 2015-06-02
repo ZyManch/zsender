@@ -31,19 +31,7 @@ class ActiveRecord extends CActiveRecord {
         return array();
     }
 
-    protected function _hasStatus() {
-        return in_array('status', $this->tableSchema->columnNames);
-    }
 
-    public function defaultScope() {
-        if (!$this->_hasStatus()) {
-            return array();
-        }
-        $t = $this->getTableAlias(false, false);
-        return array(
-            'condition' => $t.'.status  = "'.self::STATUS_ACTIVE.'"',
-        );
-    }
 
     public function getErrorsAsText() {
         $result = array();

@@ -20,15 +20,7 @@ class Controller extends CController
     public function init() {
         parent::init();
         $user = Yii::app()->user;
-        $isGuest = $user->getIsGuest();
-        $this->topMenu = array(
-            array('label'=>'Home', 'url'=>array('dashboard/index')),
-            array('label'=>'Account'.(!$isGuest ? ' ('.Yii::app()->user->name.')':''), 'items' => array(
-                array('label'=>'Logout', 'url'=>array('user/logout'), 'visible'=>!$isGuest),
-                array('label'=>'Login', 'url'=>array('user/login'), 'visible'=>$isGuest),
-                array('label'=>'Register', 'url'=>array('user/register'), 'visible'=>$isGuest),
-            ))
-        );
+
     }
 
 
